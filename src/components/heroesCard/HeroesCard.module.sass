@@ -1,0 +1,49 @@
+@import '../../style/_mixin.module'
+
+.heroesCard
+    grid-column: 1
+    .card
+        // overflow-y: scroll
+        height: 1100px
+        display: grid
+        grid-template-columns: repeat(3, 200px)
+        gap: 2em
+        @media screen and ( max-width: 850px )
+            overflow-y: scroll
+            height: 1100px
+            display: flex
+            justify-content: center
+            flex-wrap: wrap
+        .item
+            display: flex
+            flex-direction: column
+            min-height: 350px
+            cursor: pointer
+            background-color: #232222
+            box-shadow: 1px 5px 22px -1px#5C5C5C
+            transition: all .5s ease
+            &:hover
+                box-shadow: 1px 5px 22px -1px#9F0013
+                transform: scale(1.05)
+                outline: none
+            &:focus
+                box-shadow: 1px 5px 22px -1px#9F0013
+                transform: scale(1.05)
+                outline: none
+            .img
+                object-fit: contain
+                width: 100%
+            .name
+                padding: 20px
+                color: #fff
+                font-size: 22px
+                font-weight: 700
+                line-height: 25.78px
+                text-transform: uppercase
+    .btn
+        margin-top: 50px
+        display: flex
+        align-items: flex-end
+        justify-content: center
+        button
+            @include button

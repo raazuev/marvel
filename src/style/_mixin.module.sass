@@ -1,0 +1,22 @@
+@mixin button
+    cursor: pointer
+    background-color: #9F0013
+    text-transform: uppercase
+    font-size: 14px
+    font-weight: 400
+    line-height: 16.41px
+    color: #FFFFFF
+    width: 7rem
+    min-height: 38px
+    box-shadow: 9px 9px 9px 9px #5C5C5C
+    border: none
+    clip-path: polygon(5px 0,100% 0,100% calc(100% - 5px), calc(100% - 5px) 100%,0 100%,0 5px)
+    transition: all .5s ease
+    &:hover
+        transform: translateX(10px)
+    &:disabled
+        filter: grayscale(.5)
+@mixin link
+    transition: all .5s ease
+    &:hover
+        transform: translateX(10px)

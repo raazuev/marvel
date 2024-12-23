@@ -1,0 +1,61 @@
+@import '../../style/_mixin.module'
+
+.infoCard
+    display: grid
+    grid-template-columns: repeat(2, 50%)
+    align-items: center
+    box-shadow: 1px 1px 9px -4px #5C5C5C
+    @media screen and ( max-width: 850px )
+        display: flex
+        flex-wrap: wrap
+    .itemLeft
+        grid-column: 1
+        padding: 20px
+        display: flex
+        gap: 2em
+        align-items: center
+        img
+            width: 180px
+            height: 180px
+            object-fit: contain
+        .innerLeft
+            h2  
+                padding-bottom: 10px
+                font-size: 22px
+                font-weight: 700
+                line-height: 25.78px
+            p
+                font-size: 14px
+                font-weight: 400
+                line-height: 16.41px
+                padding-bottom: 10px
+            button
+                @include button
+                margin-right: 20px
+            .grey
+
+                @include button
+                background-color: #5C5C5C
+    .itemRight
+        grid-column: 2
+        padding: 20px
+        display: flex
+        align-items: center
+        background-color: #232222
+        color: #fff
+        img
+            object-fit: contain
+            transform: translate(70px, 50px)
+        .innerRight
+            h2
+                font-size: 20px
+                font-weight: 700
+                line-height: 28.13px
+                padding-bottom: 10px
+            h3
+                font-size: 18px
+                font-weight: 700
+                line-height: 28.13px
+                padding-bottom: 30px
+            button
+                @include button

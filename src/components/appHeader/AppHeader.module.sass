@@ -1,0 +1,31 @@
+@import '../../style/_mixin.module'
+
+
+.dynamic
+    border: 1px solid black 
+    .title
+        font-size: 30px
+.header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    h1
+        grid-column: 2
+        font-size: 28px
+        font-weight: 700
+        line-height: 32.81px
+        span
+            color: #9e0012
+    .nav
+        ul
+            display: flex
+            flex-wrap: wrap
+            gap: 1em
+            li
+                font-size: 24px
+                font-weight: 700
+                line-height: 28.13px
+                &:first-child
+                    color: #9e0012
+                a
+                    @include link   
