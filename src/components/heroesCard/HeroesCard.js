@@ -2,33 +2,26 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import styles from './HeroesCard.module.sass';
 
 const HeroesCard = (props) => {
 
     const [heroesCard, setHeroesCard] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
     const [newItemLoading, setNewItemLoading] = useState(false);
     const [offset, setOffset] = useState(210);
     const [charEnded, setCharEnded] = useState(false);
 
-    const marvelService = new MarvelService();
+    const {loading, error, getAllCharacters} = useMarvelService();
 
     useEffect(() => {
-        onRequest();
+        onRequest(offset, true);
     }, [])
 
-    const onRequest = (offset) => {
-        onCharListLoading();
-        marvelService.getAllCharacters(offset)
+    const onRequest = (offset, initial) => {
+        initial ? setNewItemLoading(false) : setNewItemLoading(true);
+        getAllCharacters(offset)
             .then(onCharListLoaded)
-            .catch(onError)
-    }
-
-    const onCharListLoading = () => {
-        setNewItemLoading(true);
     }
 
     const onCharListLoaded = (newHeroesCard) => {
@@ -38,15 +31,9 @@ const HeroesCard = (props) => {
         }
 
         setHeroesCard(heroesCard => [...heroesCard, ...newHeroesCard]);
-        setLoading(false);
         setNewItemLoading(newItemLoading => false);
         setOffset(offset => offset + 9);
         setCharEnded(charEnded => ended);
-    }
-
-    const onError = () => {
-        setError(true);
-        setLoading(false)
     }
 
     function renderItems(arr) {
@@ -84,8 +71,7 @@ const HeroesCard = (props) => {
     const items = renderItems(heroesCard);
 
     const errorMessage = error ? <ErrorMessage /> : null;
-    const spinner = loading ? <Spinner /> : null;
-    const content = !(loading || error) ? items : null;
+    const spinner = loading && !newItemLoading ? <Spinner /> : null;
 
     return (
         <div className={styles.heroesCard}>
@@ -93,7 +79,7 @@ const HeroesCard = (props) => {
             <div className={styles.spinner}>
                 {spinner}
             </div>
-            {content}
+            {items}
             <div className={styles.btn}>
                 <button
                     disabled={newItemLoading}

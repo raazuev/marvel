@@ -1,0 +1,42 @@
+@import '../../style/_mixin.module'
+    
+.comicsInner 
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    gap: 20px
+    .spinner
+        display: flex
+        width: 200px
+    .comicsItem
+        display: contents
+        li
+            margin-bottom: 50px
+            display: flex
+            flex-direction: column
+            align-items: center
+            img
+                width: 100%
+                min-height: 200px
+                box-shadow: 1px 5px 22px -1px#5C5C5C
+                transition: all .5s ease
+                &:hover
+                    box-shadow: 1px 5px 22px -1px#9F0013
+                    transform: scale(1.05)
+                    outline: none
+                &:focus
+                    box-shadow: 1px 5px 22px -1px#9F0013
+                    transform: scale(1.05)
+                    outline: none
+    .btn
+        grid-column: 2
+        display: flex
+        justify-content: flex-end
+        position: relative
+        button
+            @include button       
+@media (max-width: 768px)
+    .comicsInner 
+        grid-template-columns: repeat(2, 1fr)
+@media (max-width: 480px)
+    .comicsInner 
+        grid-template-columns: 1fr

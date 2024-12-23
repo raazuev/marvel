@@ -1,12 +1,12 @@
 import styles from './AppHeader.module.sass';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
 const AppHeader = (props) => {
 
     const [wiki, setWiki] = useState('');
-    const marvelService = new MarvelService();
+    const marvelService = useMarvelService();
 
     useEffect(() => {
         const { characterId } = props;
