@@ -1,41 +1,33 @@
+import { Link, NavLink } from 'react-router-dom';
 import styles from './AppHeader.module.sass';
-import useMarvelService from '../../services/MarvelService';
-import { useState, useEffect } from 'react';
 import React from 'react';
 
-const AppHeader = (props) => {
-
-    const [wiki, setWiki] = useState('');
-    const marvelService = useMarvelService();
-
-    useEffect(() => {
-        const { characterId } = props;
-        if (characterId) {
-            const fetchCharacter = async () => {
-                try {
-                    const character = await marvelService.getCharacter(characterId);
-                    setWiki(character.wiki);
-                } catch (error) {
-                    console.log('Error', error)
-                }
-            };
-
-            fetchCharacter();
-        }
-    }, [props.characterId, marvelService]);
+const AppHeader = () => {
 
     return (
         <header className={styles.header}>
             <h1>
-                <a href={wiki}>
+                <Link to='/'>
                     <span>Marvel</span> information portal
-                </a>
+                </Link>
             </h1>
             <nav className={styles.nav}>
                 <ul>
-                    <li><a href="">Characters</a></li>
+                    <li><NavLink
+                                end
+                                to='/' 
+                                className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : `${styles.link}`}>
+                                Characters
+                        </NavLink>
+                    </li>
                     /
-                    <li><a href="">Comics</a></li>
+                    <li><NavLink 
+                                end
+                                to='/comics' 
+                                className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : `${styles.link}`}>
+                                Comics
+                        </NavLink>
+                    </li>
                 </ul>
             </nav>
         </header>

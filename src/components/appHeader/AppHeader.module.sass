@@ -25,7 +25,13 @@
                 font-size: 24px
                 font-weight: 700
                 line-height: 28.13px
-                &:first-child
-                    color: #9e0012
                 a
-                    @include link   
+                    transition: all .5s ease
+                    &:hover
+                        transform: translateX(10px) 
+.link
+    color: #131212
+.active
+    color: #b90707
+    &:hover
+        color: #b90707
