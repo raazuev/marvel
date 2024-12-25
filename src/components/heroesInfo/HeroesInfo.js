@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 const HeroesInfo = (props) => {
 
     const [char, setChar] = useState(null);
-
+    const [loadingHero, setLoadingHero] = useState(false);
+    const [innerActive, setInnerActive] = useState(false);
     const {loading, error, getCharacter, clearError} = useMarvelService();
 
     useEffect(() => {
@@ -22,26 +23,34 @@ const HeroesInfo = (props) => {
             return;
         }
 
+        setLoadingHero(true);
         clearError();
         getCharacter(charId)
             .then(onCharLoaded)
+            .finally(() => setLoadingHero(false));
     }
 
     const onCharLoaded = (char) => {
         setChar(char);
+        setInnerActive(true);
     }
 
+    const heroSpinner = !innerActive && loadingHero ? <Spinner /> : null;
     const skeleton = char || loading || error ? null : <Skeleton/>;
     const errorMessage = error ? <ErrorMessage /> : null;
-    const spinner = loading ? <Spinner /> : null;
+    const spinner = innerActive && loading ? <Spinner /> : null;
     const content = !(loading || error || !char) ? <View char={char}/> : null;
 
     return(
-        <div className={styles.inner}>
-            {skeleton}
-            {errorMessage}
-            {spinner}
-            {content}
+        <div className={styles.spin}>
+            {heroSpinner}
+            <div
+                className={`${styles.inner} ${char ? styles.active : ''}`}>
+                {skeleton}
+                {errorMessage}
+                {spinner}
+                {content}
+            </div>
         </div>
     )
 }

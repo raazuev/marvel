@@ -26,20 +26,17 @@ const HeroesCard = (props) => {
 
     const onCharListLoaded = (newHeroesCard) => {
         let ended = false;
-        if (newHeroesCard.length < 9) {
+        if (newHeroesCard.length < 8) {
             ended = true;
         }
 
         setHeroesCard(heroesCard => [...heroesCard, ...newHeroesCard]);
         setNewItemLoading(newItemLoading => false);
-        setOffset(offset => offset + 9);
+        setOffset(offset => offset + 8);
         setCharEnded(charEnded => ended);
     }
 
     function renderItems(arr) {
-        if (!arr || arr.length === 0) {
-            return <p>No characters found.</p>;
-        }
 
         const items = arr.map((item) => {
             return (

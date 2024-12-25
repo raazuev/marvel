@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import useMarvelService from "../../services/MarvelService";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
@@ -40,11 +41,11 @@ const ComicsList = () => {
         const items = arr.map((item, i) => {
             return (
                 <li key={i}>
-                    <a href="#">
+                    <Link to={`/comics/${item.id}`}>
                         <img src={item.thumbnail} alt={item.title}/>
                         <h3>{item.title}</h3>
                         <p>{item.price}</p>
-                    </a>
+                    </Link>
                 </li>
             )
         })
@@ -66,14 +67,12 @@ const ComicsList = () => {
             {errorMessage}
             {spinner}
             {items}
-            <div className={styles.btn}>
-                <button
-                    disabled={newItemLoading}
-                    style={{'display': comicsEnded ? 'none' : 'block'}}
-                    onClick={() => onRequest(offset)}>
-                    LOAD MORE
-                </button>
-            </div>
+            <button
+                disabled={newItemLoading}
+                style={{'display': comicsEnded ? 'none' : 'block'}}
+                onClick={() => onRequest(offset)}>
+                LOAD MORE
+            </button>
         </div>
     )
 }
