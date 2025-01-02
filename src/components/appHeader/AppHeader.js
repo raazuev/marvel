@@ -1,11 +1,31 @@
 import { Link, NavLink } from 'react-router-dom';
 import styles from './AppHeader.module.sass';
-import React from 'react';
-
+import React, {useEffect, useState} from 'react';
+ 
 const AppHeader = () => {
 
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            setLastScrollY(currentScrollY);
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
-        <header className={styles.header}>
+        <header className={`${styles.header} ${isVisible ? styles.visible : styles.hidden}`}>
             <h1>
                 <Link to='/'>
                     <span>Marvel</span> information portal
@@ -20,7 +40,6 @@ const AppHeader = () => {
                                 Characters
                         </NavLink>
                     </li>
-                    /
                     <li><NavLink 
                                 end
                                 to='/comics' 

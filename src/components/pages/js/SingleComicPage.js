@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { useState, useEffect } from 'react';
 import useMarvelService from '../../../services/MarvelService';
 import Spinner from '../../spinner/Spinner';
@@ -44,6 +45,13 @@ const View = ({comic}) => {
 
     return (
         <div className={styles.singleInner}>
+            <Helmet>
+                <meta
+                    name="description"
+                    content={`${title} comics book`}
+                    />
+                <title>{title}</title>
+            </Helmet>
             <div className={styles.singleInfo}>
                 <div className={styles.img}>
                     <img src={thumbnail} alt={title} />

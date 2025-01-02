@@ -9,14 +9,18 @@
         opacity: 0
         box-shadow: 1px 5px 10px -3px#5C5C5C
         padding: 50px
-        transition: .5s all
-        transform: translateX(400px)
-    .active
-        overflow-y: auto
-        margin-bottom: 50px
-        height: 400px
-        opacity: 1
-        transform: translateX(0px)
+        transition: transform .7s ease, opacity .7s ease
+        transform: translateY(400px)
+        &.active
+            overflow-y: auto
+            margin-bottom: 50px
+            height: 400px
+            opacity: 1
+            transform: translateX(0px)
+            transition: transform .7s ease, opacity .7s ease
+        &.closing
+            opacity: 0
+            transform: translateY(400px)
         &::-webkit-scrollbar
             width: 4px
             height: 20px

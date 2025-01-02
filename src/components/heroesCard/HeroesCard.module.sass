@@ -3,10 +3,10 @@
 .heroesCard
     grid-row: 2
     grid-column: 2 span
+    border: none
     .card
         padding: 30px
-        // overflow: hidden
-        overflow-y: scroll
+        overflow-y: auto
         height: 1000px
         display: grid
         grid-template-columns: repeat(4, 1fr)
@@ -16,7 +16,7 @@
             height: 20px
             scrollbar-gutter: stable
         &::-webkit-scrollbar-thumb
-            background-color: #F65151
+            background-color: #f65151
             border-radius: 10px
             width: 20px
             background-clip: padding-box
@@ -31,7 +31,7 @@
             flex-wrap: wrap
         .item
             display: flex
-            flex-direction: column
+            flex-direction: column  
             height: 400px
             cursor: pointer
             background-color: #232222
@@ -40,11 +40,14 @@
             &:hover
                 box-shadow: 1px 5px 22px -1px#9F0013
                 transform: scale(1.05)
+                border-radius: 20px
                 outline: none
+                z-index: 1
             &:focus
                 box-shadow: 1px 5px 22px -1px#9F0013
                 transform: scale(1.05)
                 outline: none
+                border-radius: 20px
             .img
                 object-fit: cover
                 width: 100%

@@ -1,14 +1,24 @@
 @import '../../style/_mixin.module'
 
-
 .dynamic
     border: 1px solid black 
     .title
         font-size: 30px
 .header
+    box-shadow: 1px 5px 22px -1px#5C5C5C
+    background-color: #fff
+    min-height: 70px
+    border: 2px solid #9e0012
+    border-radius: 20px
     display: flex
     justify-content: space-between
     align-items: center
+    position: sticky
+    width: 100%
+    top: 0
+    z-index: 100
+    transition: all .5s ease
+    padding: 10px
     h1
         grid-column: 2
         font-size: 28px
@@ -35,3 +45,7 @@
     color: #b90707
     &:hover
         color: #b90707
+.visible
+    transform: translateY(0px)
+.hidden
+    transform: translateY(-200px)

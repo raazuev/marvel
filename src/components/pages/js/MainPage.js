@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import ComicsInfo from '../../comicsInfo/ComicsInfo';
 import HeroesCard from '../../heroesCard/HeroesCard';
+import FormCharSearch from '../../formCharSearch/FormCharSearch';
 import HeroesInfo from '../../heroesInfo/HeroesInfo';
 import ErrorBoundary from '../../errorBoundary/ErrorBoundary';
 import styles from '../style/MainPage.module.sass';
@@ -21,6 +23,14 @@ const MainPage = () => {
 
     return (
         <>
+            <Helmet>
+                <meta
+                    name="description"
+                    content="Marvel portal"
+                    />
+                <title>Marvel portal</title>
+            </Helmet>
+            <FormCharSearch/>
             <ComicsInfo/>
             <div className={styles.heroesContent}>
                 <HeroesCard onCharSelected={onCharSelected}/>

@@ -12,10 +12,20 @@ const HeroesInfo = (props) => {
     const [loadingHero, setLoadingHero] = useState(false);
     const [innerActive, setInnerActive] = useState(false);
     const {loading, error, getCharacter, clearError} = useMarvelService();
+    const [closing, setClosing] = useState(false);
 
     useEffect(() => {
-        updateChar();
+        if (props.char !== null) {
+            handleCharClose();
+        }
     }, [props.charId])
+
+    const handleCharClose = () => {
+        setClosing(true);
+        setTimeout(() => {
+            updateChar();
+        }, 400);
+    };
 
     const updateChar = () => {
         const {charId} = props;
@@ -27,8 +37,11 @@ const HeroesInfo = (props) => {
         clearError();
         getCharacter(charId)
             .then(onCharLoaded)
-            .finally(() => setLoadingHero(false));
-    }
+            .finally(() => {
+                setLoadingHero(false);
+                setClosing(false);
+            });
+    };
 
     const onCharLoaded = (char) => {
         setChar(char);
@@ -45,7 +58,9 @@ const HeroesInfo = (props) => {
         <div className={styles.spin}>
             {heroSpinner}
             <div
-                className={`${styles.inner} ${char ? styles.active : ''}`}>
+                className={`${styles.inner} 
+                            ${char ? styles.active : ''}
+                            ${closing ? styles.closing : ''}`}>
                 {skeleton}
                 {errorMessage}
                 {spinner}
