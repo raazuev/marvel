@@ -38,6 +38,8 @@ const HeroesCard = (props) => {
 
     function renderItems(arr) {
 
+        console.log('render');
+        
         const items = arr.map((item) => {
             return (
                 <ul 

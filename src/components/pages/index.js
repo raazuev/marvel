@@ -4,4 +4,8 @@ import SingleComicPage from "./js/SingleComicPage";
 import CharacterPage from './js/SingleCharSearch';
 import Page404 from "./js/404";
 
-export {MainPage, ComicsPage, SingleComicPage, CharacterPage, Page404};
+export {MainPage, 
+        ComicsPage, 
+        SingleComicPage, 
+        CharacterPage, 
+        Page404};

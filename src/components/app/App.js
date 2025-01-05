@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppHeader from '../appHeader/AppHeader';
 import {MainPage, ComicsPage, SingleComicPage, CharacterPage, Page404} from '../pages';
 import styles from './App.module.sass';
+
 const App = () => {
 
     return (
